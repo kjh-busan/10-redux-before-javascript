@@ -1,12 +1,13 @@
-const redux = require("reduxjs/toolkit");
+const redux = require("redux");
 
-const counterReducer = (state, action) => {
+const counterReducer = (state = { counter: 0 }, action) => {
   return {
     counter: state.counter + 1,
   };
 };
 
 const sotre = redux.createStore(counterReducer);
+// console.log(sotre.getState());
 
 const counterSubsriber = () => {
   const lastestState = sotre.getState();
@@ -14,3 +15,5 @@ const counterSubsriber = () => {
 };
 
 sotre.subscribe(counterSubsriber);
+
+sotre.dispatch({ type: "INCREASE" });
